@@ -1,0 +1,128 @@
+<header id="cabecalho">
+  <h1>Mapeamento do Risco de Contaminação Hídrica por Esgotamento Sanitário</h1>
+</header>
+
+<div id="welcome-popup" class="modal">
+  <div class="modal-content">
+    <div class="modal-header">
+      <h2>Mapeamento do Risco de Contaminação Hídrica por Esgotamento Sanitário</h2>
+      <span class="close-modal">&times;</span>
+    </div>
+    <div class="modal-body">
+      <p>Avaliação do risco de contaminação utilizando dados do <a href="https://www.ana.gov.br/atlas-esgotos"
+          target="_blank">Atlas Esgotos da ANA</a>:</p>
+      <ul>
+        <li><i class="fas fa-tint"></i> Capacidade de diluição dos corpos hídricos</li>
+        <li><i class="fas fa-users"></i> População sem coleta e tratamento (2013)</li>
+      </ul>
+      <div class="info-box">
+        <h3><i class="fas fa-info-circle"></i> Como o risco foi calculado:</h3>
+        <p>Índice = Peso da Diluição + Peso do Não Atendimento</p>
+        <div class="risco-exemplo">
+          <span class="risco-tag muito-baixo">2-3: Muito Baixo</span>
+          <span class="risco-tag baixo">4-5: Baixo</span>
+          <span class="risco-tag medio">6-7: Médio</span>
+          <span class="risco-tag alto">8-9: Alto</span>
+          <span class="risco-tag muito-alto">10: Muito Alto</span>
+        </div>
+      </div>
+    </div>
+    <div class="modal-footer">
+      <button id="start-btn" class="btn-primary">Acessar Plataforma</button>
+    </div>
+  </div>
+</div>
+
+<!-- Filtros (Topo Direito) -->
+<div id="painel-filtros">
+  <div class="search-container">
+    <input type="text" id="buscaMunicipio" placeholder="Buscar município..." />
+    <i class="fas fa-search search-icon"></i>
+  </div>
+  <div>
+    <label for="filtro-bioma">Bioma:</label>
+    <select id="filtro-bioma"></select>
+  </div>
+  <div>
+    <label for="filtro-uf">Estado:</label>
+    <select id="filtro-uf"></select>
+  </div>
+  <button id="btnLimpar" class="btn-secondary">
+    <i class="fas fa-broom"></i> Limpar Filtros
+  </button>
+  <button id="btnExportar" class="btn-primary">
+    <i class="fas fa-file-excel"></i> Exportar
+    <span class="tooltip">Exportar municípios visíveis com todos os indicadores</span>
+  </button>
+
+  <div id="estatisticas-filtro">
+    <h3><i class="fas fa-chart-pie"></i> Estatísticas dos Filtros</h3>
+    <div id="stats-content">
+      <p>Selecione filtros para ver estatísticas</p>
+      <div class="chart-container">
+        <canvas id="graficoRisco"></canvas>
+      </div>
+    </div>
+  </div>
+</div>
+</div>
+
+<!-- Mapa (Centro) -->
+<div id="map"></div>
+
+<!-- Sidebar (Esquerda) -->
+<div id="sidebar">
+  <div id="sidebar-content">
+    <!-- Seção de Informações do Município -->
+    <div id="info-municipio">
+      <div id="municipio-header">
+        <h3 id="titulo-sidebar">Selecione um município</h3>
+        <div id="risco-tag" class="risco-tag">-</div>
+      </div>
+
+      <div id="municipio-info">
+        <div class="info-row">
+          <span class="info-label">Bioma:</span>
+          <span id="info-bioma" class="info-value">-</span>
+        </div>
+        <div class="info-row">
+          <span class="info-label">População urbana:</span>
+          <span id="info-populacao" class="info-value">-</span>
+        </div>
+        <div class="info-row">
+          <span class="info-label">Sem atendimento:</span>
+          <span id="info-sem-atendimento" class="info-value">-</span>
+        </div>
+        <div class="info-row">
+          <span class="info-label">Diluição:</span>
+          <span id="info-diluicao" class="info-value">-</span>
+        </div>
+      </div>
+
+      <!-- Legenda -->
+      <div id="legenda">
+        <h3><i class="fas fa-map"></i> Legenda</h3>
+        <div class="legenda-item">
+          <div class="legenda-color risco-muito-baixo"></div>
+          <span>Muito Baixo</span>
+        </div>
+        <div class="legenda-item">
+          <div class="legenda-color risco-baixo"></div>
+          <span>Baixo</span>
+        </div>
+        <div class="legenda-item">
+          <div class="legenda-color risco-medio"></div>
+          <span>Médio</span>
+        </div>
+        <div class="legenda-item">
+          <div class="legenda-color risco-alto"></div>
+          <span>Alto</span>
+        </div>
+        <div class="legenda-item">
+          <div class="legenda-color risco-muito-alto"></div>
+          <span>Muito Alto</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
