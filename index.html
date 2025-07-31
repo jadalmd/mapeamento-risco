@@ -22,6 +22,7 @@
 
       body {
         overflow: hidden;
+        background: #f5f7fa;
       }
 
       /* Popup Inicial - Cores Ajustadas */
@@ -39,14 +40,13 @@
       }
 
       .modal-content {
-        background: white;
-        padding: 40px 20px;
-        border-radius: 8px;
-        width: 90%;
-        max-width: 600px;
-        box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
+        background: #fff;
+        padding: 36px 22px;
+        border-radius: 10px;
+        width: 95%;
+        max-width: 540px;
+        box-shadow: 0 2px 16px rgba(44, 62, 80, 0.09);
         color: #333;
-        /* Cor padrão para todo o conteúdo do modal */
       }
 
       .modal-header {
@@ -54,29 +54,33 @@
       }
 
       .modal-header h2 {
-        color: #2c3e50;
+        color: #3498db;
+        font-size: 20px;
+        font-weight: 700;
       }
 
       .close-modal {
         float: right;
         font-size: 24px;
         cursor: pointer;
-        color: #333;
-        /* Cor do X para fechar */
+        color: #aaa;
+        transition: color 0.2s;
+      }
+
+      .close-modal:hover {
+        color: #e74c3c;
       }
 
       .info-box {
-        background: #f8f9fa;
+        background: #f4f8fb;
         padding: 15px;
-        border-radius: 6px;
+        border-radius: 8px;
         margin: 15px 0;
         color: #333;
-        /* Cor do texto principal */
       }
 
       .info-box h3 {
-        color: #2c3e50;
-        /* Cor do título */
+        color: #3498db;
         margin-bottom: 10px;
       }
 
@@ -102,18 +106,49 @@
       /* Filtros (Topo Direito) */
       #painel-filtros {
         position: absolute;
-        top: 10px;
+        top: 60px;
         left: 10px;
-        background: white;
-        padding: 10px;
-        border-radius: 6px;
-        box-shadow: 0 0 10px rgba(0, 0, 0, 0.15);
+        background: #fff;
+        padding: 12px 14px 12px 14px;
+        border-radius: 10px;
+        box-shadow: 0 2px 8px rgba(44, 62, 80, 0.07);
         z-index: 1000;
         display: flex;
         flex-direction: column;
-        gap: 8px;
+        gap: 10px;
         width: 320px;
-        overflow: scroll;
+        max-height: 80vh;
+        transition: width 0.2s, opacity 0.2s;
+        border: 1px solid #eaeaea;
+      }
+
+      #painel-filtros.minimizado {
+        width: 48px;
+        min-width: 48px;
+        max-width: 48px;
+        opacity: 0.8;
+        overflow: hidden;
+        padding: 8px 4px;
+        gap: 0;
+      }
+
+      #btn-minimizar-filtros {
+        background: none;
+        border: none;
+        color: #7f8c8d;
+        font-size: 18px;
+        cursor: pointer;
+        align-self: flex-end;
+        margin-bottom: 2px;
+        transition: color 0.2s;
+      }
+
+      #btn-minimizar-filtros:hover {
+        color: #3498db;
+      }
+
+      #painel-filtros.minimizado>*:not(#btn-minimizar-filtros) {
+        display: none !important;
       }
 
       .search-container {
@@ -149,74 +184,26 @@
         border-radius: 4px;
       }
 
-      .btn-primary,
-      .btn-secondary {
-        padding: 8px 12px;
-        border: none;
-        border-radius: 4px;
-        cursor: pointer;
-        display: flex;
-        align-items: center;
-        gap: 6px;
-        font-size: 14px;
-      }
-
-      .btn-primary {
-        background: #3498db;
-        color: white;
-      }
-
-      .btn-secondary {
-        background: #ecf0f1;
-        color: #2c3e50;
-      }
-
-      .tooltip {
-        visibility: hidden;
-        width: 200px;
-        background: #2c3e50;
-        color: white;
-        text-align: center;
-        border-radius: 4px;
-        padding: 8px;
-        position: absolute;
-        z-index: 1001;
-        bottom: 125%;
-        left: 50%;
-        transform: translateX(-50%);
-      }
-
-      .btn-primary:hover .tooltip {
-        visibility: visible;
-      }
-
-      /* Mapa (Centro) */
-      #map {
-        position: absolute;
-        top: 0;
-        left: 0;
-        right: 300px;
-        bottom: 0;
-      }
-
-      /* Sidebar (Esquerda) */
+      /* Sidebar clean e legenda integrada */
       #sidebar {
         position: absolute;
-        top: 0;
+        top: 50px;
         right: 0;
-        width: 300px;
-        height: 100%;
-        background: #f8f9fa;
-        border-right: 1px solid #ddd;
+        width: 320px;
+        height: calc(100% - 50px);
+        background: #fff;
+        border-left: 1px solid #eaeaea;
         display: flex;
         flex-direction: column;
         z-index: 900;
+        box-shadow: 0 2px 8px rgba(44, 62, 80, 0.07);
+        transition: width 0.2s;
       }
 
       #sidebar-content {
         flex: 1;
         overflow-y: auto;
-        padding: 15px;
+        padding: 18px 18px 0 18px;
       }
 
       #info-municipio {
@@ -230,110 +217,123 @@
         margin-bottom: 15px;
       }
 
-      .risco-tag {
-        padding: 4px 8px;
-        border-radius: 12px;
-        font-size: 12px;
-        font-weight: bold;
-        color: white;
-      }
-
-      #municipio-header h4 {
-        /* Tamanho menor para o título */
-        font-size: 16px;
+      #municipio-header h3 {
+        font-size: 17px;
         margin: 0;
         color: #2c3e50;
+        font-weight: 600;
       }
 
-      #info-municipio {
-        padding: 15px;
+      .risco-tag {
+        padding: 4px 10px;
+        border-radius: 12px;
+        font-size: 13px;
+        font-weight: bold;
+        color: #fff;
+        letter-spacing: 0.5px;
+        min-width: 80px;
+        text-align: center;
       }
 
-      /* Posicionamento da legenda */
-      #legenda {
-        position: absolute;
-        top: 0;
-        right: 0;
-        padding: 10px;
-        border-top: 1px solid #ddd;
-        margin-top: auto;
-        /* Empurra para baixo */
-        background: white;
-        position: sticky;
-        bottom: 0;
-      }
-
+      /* Cores clean para risco */
       .risco-muito-baixo {
-        background: #31a354;
+        background: #4ecb8f;
       }
 
       .risco-baixo {
-        background: #a1d99b;
-        color: #333;
+        background: #b7eacb;
+        color: #2c3e50;
       }
 
       .risco-medio {
-        background: #fed976;
-        color: #333;
+        background: #ffe6a1;
+        color: #2c3e50;
       }
 
       .risco-alto {
-        background: #fd8d3c;
+        background: #ffb97a;
       }
 
       .risco-muito-alto {
-        background: #e31a1c;
+        background: #e74c3c;
       }
 
       .info-row {
         display: flex;
         justify-content: space-between;
         margin-bottom: 8px;
-        font-size: 14px;
+        font-size: 15px;
       }
 
       .info-label {
         color: #7f8c8d;
       }
 
-      #estatisticas-filtro>h3 {
-        font-size: 1rem;
-        font-weight: bold;
-      }
-
-      #estatisticas-filtro>div>p {
-        font-size: 0.75rem;
-      }
-
-      .chart-container {
-        margin-top: 15px;
-        height: 200px;
-      }
-
-      .chart-container h4 {
-        margin-bottom: 10px;
-        font-size: 14px;
-        color: #7f8c8d;
-      }
-
+      /* Legenda integrada ao sidebar */
       #legenda {
-        padding: 15px;
-        border-top: 1px solid #ddd;
+        width: 100%;
+        padding: 18px 18px 12px 18px;
+        border-top: 1px solid #eaeaea;
+        background: #fafbfc;
+        position: static;
+        margin-top: auto;
+        box-shadow: none;
+      }
+
+      #legenda h3 {
+        font-size: 15px;
+        color: #7f8c8d;
+        margin-bottom: 10px;
+        font-weight: 600;
       }
 
       .legenda-item {
         display: flex;
         align-items: center;
-        margin-bottom: 6px;
+        margin-bottom: 7px;
         font-size: 13px;
+        color: #2c3e50;
       }
 
       .legenda-color {
-        width: 16px;
-        height: 16px;
-        border-radius: 3px;
-        margin-right: 8px;
-        border: 1px solid rgba(0, 0, 0, 0.1);
+        width: 18px;
+        height: 18px;
+        border-radius: 4px;
+        margin-right: 10px;
+        border: 1px solid #eaeaea;
+      }
+
+      /* Mapa */
+      #map {
+        position: absolute;
+        top: 50px;
+        left: 0;
+        right: 320px;
+        bottom: 0;
+        background: #eaeaea;
+      }
+
+      /* Cabeçalho clean */
+      #cabecalho {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        background-color: #3498db;
+        color: white;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: 12px 24px;
+        z-index: 1100;
+        box-shadow: 0 1px 4px rgba(44, 62, 80, 0.07);
+      }
+
+      #cabecalho h1 {
+        font-size: 19px;
+        margin: 0;
+        font-weight: 600;
+        letter-spacing: 0.5px;
       }
 
       /* Estilos do Mapa */
@@ -352,413 +352,35 @@
         pointer-events: none;
       }
 
-      #cabecalho {
-        position: absolute;
-        top: 0;
-        left: 0;
-        width: 100%;
-        background-color: #2c3e50;
-        color: white;
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
-        padding: 10px 20px;
-        z-index: 1100;
-        box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
-      }
-
-      #cabecalho h1 {
-        font-size: 18px;
-        margin: 0;
-      }
-
-      #menu-info {
-        position: relative;
-      }
-
-      #btn-info {
-        background: none;
-        border: none;
-        color: white;
-        font-size: 18px;
-        cursor: pointer;
-      }
-
-      .dropdown-content {
-        display: none;
-        position: absolute;
-        right: 0;
-        top: 30px;
-        background-color: white;
-        color: #2c3e50;
-        min-width: 160px;
-        box-shadow: 0px 8px 16px rgba(0, 0, 0, 0.2);
-        z-index: 1101;
-        border-radius: 4px;
-        overflow: hidden;
-      }
-
-      .dropdown-content a {
-        color: #2c3e50;
-        padding: 10px 16px;
-        text-decoration: none;
-        display: block;
-        font-size: 14px;
-      }
-
-      .dropdown-content a:hover {
-        background-color: #f1f1f1;
-      }
-
-      body {
-        padding-top: 50px;
-        /* altura do cabeçalho */
-      }
-
-      /* Ajuste fino no mapa */
-      #map {
-        top: 50px;
-        /* evita que o cabeçalho cubra o mapa */
-      }
-
-      /* Ajuste nos painéis */
-      #painel-filtros {
-        top: 60px;
-        /* deixa espaço para o cabeçalho */
-      }
-
-      #sidebar {
-        top: 50px;
-      }
+      /* Dependências JS */
     </style>
   </head>
 
   <body>
-
-    <!-- Conteúdo de index.html -->
-    <!-- Copie exatamente o conteúdo dentro do <body> do seu index.html -->
-    <!-- ... -->
-    <!-- (Já está pronto no seu arquivo) -->
-
-
-    // Cabeçalho
-    <header id="cabecalho">
-      <h1>Mapeamento do Risco de Contaminação Hídrica por Esgotamento Sanitário</h1>
-    </header>
-
-    <div id="welcome-popup" class="modal">
-      <div class="modal-content">
-        <div class="modal-header">
-          <h2>Mapeamento do Risco de Contaminação Hídrica por Esgotamento Sanitário</h2>
-          <span class="close-modal">&times;</span>
-        </div>
-        <div class="modal-body">
-          <p>Avaliação do risco de contaminação utilizando dados do <a href="https://www.ana.gov.br/atlas-esgotos"
-              target="_blank">Atlas Esgotos da ANA</a>:</p>
-          <ul>
-            <li><i class="fas fa-tint"></i> Capacidade de diluição dos corpos hídricos</li>
-            <li><i class="fas fa-users"></i> População sem coleta e tratamento (2013)</li>
-          </ul>
-          <div class="info-box">
-            <h3><i class="fas fa-info-circle"></i> Como o risco foi calculado:</h3>
-            <p>Índice = Peso da Diluição + Peso do Não Atendimento</p>
-            <div class="risco-exemplo">
-              <span class="risco-tag muito-baixo">2-3: Muito Baixo</span>
-              <span class="risco-tag baixo">4-5: Baixo</span>
-              <span class="risco-tag medio">6-7: Médio</span>
-              <span class="risco-tag alto">8-9: Alto</span>
-              <span class="risco-tag muito-alto">10: Muito Alto</span>
-            </div>
-          </div>
-        </div>
-        <div class="modal-footer">
-          <button id="start-btn" class="btn-primary">Acessar Plataforma</button>
-        </div>
-      </div>
-    </div>
-
-    <!-- Filtros (Topo Direito) -->
-    <div id="painel-filtros">
-      <div class="search-container">
-        <input type="text" id="buscaMunicipio" placeholder="Buscar município..." />
-        <i class="fas fa-search search-icon"></i>
-      </div>
-      <div>
-        <label for="filtro-bioma">Bioma:</label>
-        <select id="filtro-bioma"></select>
-      </div>
-      <div>
-        <label for="filtro-uf">Estado:</label>
-        <select id="filtro-uf"></select>
-      </div>
-      <button id="btnLimpar" class="btn-secondary">
-        <i class="fas fa-broom"></i> Limpar Filtros
-      </button>
-      <button id="btnExportar" class="btn-primary">
-        <i class="fas fa-file-excel"></i> Exportar
-        <span class="tooltip">Exportar municípios visíveis com todos os indicadores</span>
-      </button>
-
-      <button id="btnRelatorio" class="btn-secondary">
-        <i class="fas fa-book"></i> Ver Relatório
-      </button>
-
-      <div id="estatisticas-filtro">
-        <h3><i class="fas fa-chart-pie"></i> Estatísticas dos Filtros</h3>
-        <div id="stats-content">
-          <p>Selecione filtros para ver estatísticas</p>
-          <div class="chart-container">
-            <canvas id="graficoRisco"></canvas>
-          </div>
-        </div>
-      </div>
-    </div>
-    </div>
-
-    <!-- Mapa (Centro) -->
-    <div id="map"></div>
-
-    <!-- Sidebar (Esquerda) -->
-    <div id="sidebar">
-      <div id="sidebar-content">
-        <!-- Seção de Informações do Município -->
-        <div id="info-municipio">
-          <div id="municipio-header">
-            <h3 id="titulo-sidebar">Selecione um município</h3>
-            <div id="risco-tag" class="risco-tag">-</div>
-          </div>
-          <div id="municipio-info">
-            <div class="info-row">
-              <span class="info-label">Bioma:</span>
-              <span id="info-bioma" class="info-value">-</span>
-            </div>
-            <div class="info-row">
-              <span class="info-label">População urbana:</span>
-              <span id="info-populacao" class="info-value">-</span>
-            </div>
-            <div class="info-row">
-              <span class="info-label">Sem atendimento:</span>
-              <span id="info-sem-atendimento" class="info-value">-</span>
-            </div>
-            <div class="info-row">
-              <span class="info-label">Diluição:</span>
-              <span id="info-diluicao" class="info-value">-</span>
-
-            </div>
-          </div>
-
-          <!-- Legenda -->
-          <div id="legenda">
-            <h3><i class="fas fa-map"></i> Legenda</h3>
-            <div class="legenda-item">
-              <div class="legenda-color risco-muito-baixo"></div>
-              <span>Muito Baixo</span>
-            </div>
-            <div class="legenda-item">
-              <div class="legenda-color risco-baixo"></div>
-              <span>Baixo</span>
-            </div>
-            <div class="legenda-item">
-              <div class="legenda-color risco-medio"></div>
-              <span>Médio</span>
-            </div>
-            <div class="legenda-item">
-              <div class="legenda-color risco-alto"></div>
-              <span>Alto</span>
-            </div>
-            <div class="legenda-item">
-              <div class="legenda-color risco-muito-alto"></div>
-              <span>Muito Alto</span>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-
-    <div id="relatorio-container"
-      style="display: none; position: absolute; align-items: center; left: 50%; transform: translateX(-50%); width: 90%; max-width: 1000px; background: white; z-index: 1100; padding: 20px; border-radius: 8px; box-shadow: 0 4px 12px rgba(0,0,0,0.2); overflow-y: auto; max-height: 80vh;">
-      <button id="fecharRelatorio" class="btn-primary" style="float: right; margin-bottom: 10px;">Fechar</button>
-      <h2>Relatório de Desenvolvimento de Plataforma de Análise de Risco Ambiental com Base em Dados do Atlas Esgotos da
-        ANA
-      </h2>
-      <p>
-        <br>
-        1. Introdução
-        <br><br>
-        Este relatório tem como objetivo apresentar o desenvolvimento de uma plataforma digital interativa voltada para
-        a
-        visualização espacial e análise exploratória do risco ambiental associado ao lançamento de esgotos nos corpos
-        hídricos brasileiros. A proposta surgiu no contexto da disciplina de Desenvolvimento de Aplicativos com
-        Geoprocessamento, cujo foco principal era o uso de técnicas de análise espacial para criação de ferramentas
-        digitais
-        aplicadas a temas ambientais.
-        <br>
-        A plataforma foi construída utilizando dados do Atlas Esgotos (ANA, 2017), complementados por shapefiles de
-        biomas
-        brasileiros. Embora o cálculo do risco utilizado tenha sido simplificado, a proposta da plataforma é evoluir
-        para
-        uma ferramenta mais robusta no futuro, tornando-se possivelmente o tema de pesquisa do mestrado em
-        desenvolvimento.
-        <br><br>
-        2. Objetivos
-        <br><br>
-        Desenvolver uma plataforma interativa para visualização de risco ambiental com base em dados públicos;
-        <br>
-        Integrar informações de diferentes fontes geoespaciais (municipal, ambiental e sanitária);
-        <br>
-        Aplicar técnicas de geoprocessamento para gerar uma base de dados espacial em formato GeoJSON;
-        <br>
-        Permitir a análise espacial e filtragem por biomas brasileiros;
-        <br>
-        Avaliar a utilidade da ferramenta para fins de planejamento, gestão ambiental e comunicação de dados públicos.
-        <br><br>
-        3. Dados Utilizados
-        <br><br>
-        Os dados utilizados foram provenientes de diferentes fontes:
-        <br>
-        - Atlas Esgotos (ANA, 2017):
-        <br>
-        Planilha Excel com dados municipais: população total, percentual de atendimento à coleta e tratamento de esgoto;
-        <br>
-        Shapefile de capacidade de diluição dos corpos hídricos por município.
-        <br>
-        - IBGE e MMA:
-        <br>
-        Shapefile dos biomas brasileiros.
-        <br><br>
-        4. Metodologia
-        <br><br>
-        O processo metodológico pode ser dividido em três grandes etapas:
-        <br><br>
-        4.1. Integração e preparação dos dados
-        <br><br>
-        Todos os dados espaciais foram convertidos e harmonizados em um mesmo sistema de referência;
-        <br><br>
-        Foi criado um arquivo GeoJSON contendo os dados por município com as seguintes informações agregadas:
-        <br>
-        - Capacidade de diluição (classificada);
-        <br>
-        - Percentual de atendimento à coleta e ao tratamento;
-        <br>
-        - Bioma predominante.
-        <br><br>
-        4.2. Cálculo exploratório de risco
-        <br><br>
-        Definiu-se uma metodologia simplificada para estimar um risco ambiental qualitativo, com base na combinação
-        ponderada de:
-        <br>
-        - Capacidade de diluição (boa, regular, ruim);
-        <br>
-        - Atendimento ao esgotamento (baixo, médio, alto);
-        <br><br>
-        As combinações deram origem a uma classificação exploratória do risco (baixo, médio, alto).
-        <br><br>
-        4.3. Desenvolvimento da plataforma
-        <br><br>
-        Utilizou-se bibliotecas de visualização web com suporte a dados geoespaciais (Leaflet);
-        <br><br>
-        Foram implementados filtros interativos por:
-        <br>
-        - Bioma;
-        <br>
-        - Estado;
-        <br>
-        - Faixa de risco.
-        <br><br>
-        5. Justificativa da filtragem por biomas
-        <br><br>
-        A escolha de incluir os biomas como critério de análise e filtragem foi motivada por três principais razões:
-        <br>
-        - Aspectos ecológicos: Biomas diferentes apresentam diferentes capacidades naturais de suporte, sensibilidade
-        ecológica e regimes hidrológicos;
-        <br>
-        - Cobertura vegetal e uso do solo: A relação entre vegetação natural, urbanização e lançamento de esgoto varia
-        de
-        acordo com o bioma;
-        <br>
-        - Densidade populacional e infraestrutura: Algumas regiões biogeográficas têm baixa infraestrutura de
-        saneamento,
-        agravando os impactos locais.
-        <br><br>
-        Com isso, a filtragem por bioma permite uma visão ambientalmente contextualizada do risco, o que é especialmente
-        últil para políticas de saneamento em áreas de preservação ou vulnerabilidade ecológica.
-        <br><br>
-        6. Alinhamento com os objetivos do Atlas Esgotos
-        <br><br>
-        Embora o Atlas Esgotos não apresente uma classificação direta de risco, seus objetivos principais incluem:
-        <br>
-        - Sistematizar dados de esgotamento sanitário por município;
-        <br>
-        - Avaliar o impacto da carga orgânica lançada nos corpos hídricos;
-        <br>
-        - Fornecer subsídios para a gestão e planejamento do setor.
-        <br><br>
-        A plataforma desenvolvida se propõe a complementar o Atlas ao oferecer:
-        <br>
-        - Uma visualização integrada, acessível e interativa dos dados municipais;
-        <br>
-        - Uma interpretação espacial do risco ambiental, que pode orientar a priorização de investimentos;
-        <br>
-        - Um ponto de partida para a educação ambiental e a comunicação com gestores e sociedade civil.
-        <br><br>
-        7. Potencial de aplicação e desenvolvimento futuro
-        <br><br>
-        Apesar de utilizar um cálculo de risco simplificado, a plataforma já demonstra seu potencial como:
-        <br>
-        - Ferramenta de exploração de dados espaciais para diagnóstico preliminar;
-        <br>
-        - Apoio à tomada de decisão em gestão de bacias e planejamento municipal;
-        <br>
-        - Base para a futura implementação de um modelo cientificamente validado de risco ambiental.
-        <br><br>
-        O próximo passo será o aprofundamento metodológico do modelo de risco, considerando:
-        <br>
-        - Carga orgânica gerada por município;
-        <br>
-        - Vazão dos corpos hídricos receptores;
-        <br>
-        - Taxas de remoção por tratamento;
-        <br>
-        - Indicadores de vulnerabilidade ecológica e social.
-        <br><br>
-        8. Considerações finais
-        <br><br>
-        A plataforma desenvolvida representa um primeiro passo rumo à integração entre dados ambientais e tecnologia da
-        informação, com foco em saneamento e gestão ambiental. Apesar das limitações iniciais quanto à metodologia de
-        risco,
-        ela já demonstra grande potencial de aplicação, alinhando-se aos objetivos do Atlas Esgotos e oferecendo
-        caminhos
-        para sua ampliação em contextos acadêmico, institucional e comunitário.
-        <br>
-        Seu desenvolvimento futuro pode contribuir significativamente para a formulação de políticas públicas mais
-        eficientes, baseadas em dados espaciais claros e acessíveis.
-
-        <br><br>
-
-      </p>
-    </div>
-    <style></style>
+    <!-- ...existing HTML code... -->
 
     <!-- Dependências JS -->
     <script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.18.5/xlsx.full.min.js"></script>
-
     <script>
       // Configurações iniciais
-      const URL_GEOJSON =
-        "https://raw.githubusercontent.com/jaidnaalmeida/geojson/main/geojson_municipios_reduzido_alt.geojson";
+      const URL_GEOJSON = "https://raw.githubusercontent.com/jaidnaalmeida/geojson/main/geojson_municipios_reduzido_alt.geojson";
       let geojsonData = null;
       let layerGeojson = null;
       let selectedLayer = null;
+
       let charts = {
         municipio: null,
         risco: null
-      };
+      }
+
+        ;
       let ctx = null;
 
       // Inicialização do mapa
       const map = L.map("map").setView([ -14, -55 ], 4);
+
       L.tileLayer("https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png", {
         attribution: "© OpenStreetMap contributors"
       }).addTo(map);
@@ -771,7 +393,9 @@
           Médio: "#FED976",
           Alto: "#FD8D3C",
           "Muito Alto": "#E31A1C"
-        };
+        }
+
+          ;
         return cores[ risco ] || "#777";
       }
 
@@ -786,7 +410,9 @@
           dashArray: null,
           lineCap: "round",
           lineJoin: "round"
-        };
+        }
+
+          ;
       }
 
       function getHighlightStyle() {
@@ -795,7 +421,9 @@
           color: "#fff",
           fillOpacity: 0.9,
           opacity: 1
-        };
+        }
+
+          ;
       }
 
       // Destaque do polígono
@@ -815,6 +443,7 @@
         if (!layer) return;
 
         layerGeojson.resetStyle(layer);
+
         if (layer._highlightBorder) {
           map.removeLayer(layer._highlightBorder);
           layer._highlightBorder = null;
@@ -824,51 +453,65 @@
       // Popup customizado (MANTIDO SIMILAR AO ORIGINAL)
       function createCustomPopup(feature) {
         const p = feature.properties;
-        return `
-    <div class="custom-popup">
-      <div class="popup-header">
-        <h3>${p.MUN_NM_MUN}-${p.MUN_UF}</h3>
-        <span class="risco-tag ${p.CLASSE_RISCO.toLowerCase().replace(
+
+        return ` <div class="custom-popup"><div class="popup-header"><h3>$ {
+          p.MUN_NM_MUN
+        }
+
+        -$ {
+          p.MUN_UF
+        }
+
+        </h3><span class="risco-tag ${p.CLASSE_RISCO.toLowerCase().replace(
           " ",
           "-"
-        )}">
-          ${p.CLASSE_RISCO}
-        </span>
-      </div>
-      <div class="popup-body">
-        <p><strong>Bioma:</strong> ${p.BMA_NM || "Não informado"}</p>
-        <p><strong>Risco Total:</strong> ${p.RISCO_TOTAL} (${p.CLASSE_RISCO
-          })</p>
-      </div>
-    </div>
-  `;
+        )
+          }
+
+      ">
+$ {
+        p.CLASSE_RISCO
+      }
+
+      </span></div><div class="popup-body"><p><strong>Bioma:</strong>$ {
+        p.BMA_NM || "Não informado"
+      }
+
+      </p><p><strong>Risco Total:</strong>$ {
+        p.RISCO_TOTAL
+      }
+
+      ($ {
+          p.CLASSE_RISCO
+        })</p></div></div>`;
       }
 
       // Exibir informações na sidebar
       function exibirInfo(feature) {
         const p = feature.properties;
 
-        document.getElementById(
-          "titulo-sidebar"
-        ).textContent = `${p.MUN_NM_MUN} - ${p.MUN_UF}`;
+        document.getElementById("titulo-sidebar"
+
+        ).textContent = `$ {
+          p.MUN_NM_MUN
+        }
+
+        - $ {
+          p.MUN_UF
+        }
+
+        `;
 
         const riscoTag = document.getElementById("risco-tag");
         riscoTag.textContent = p.CLASSE_RISCO;
-        riscoTag.className =
-          "risco-tag " + p.CLASSE_RISCO.toLowerCase().replace(" ", "-");
+        riscoTag.className = "risco-tag " + p.CLASSE_RISCO.toLowerCase().replace(" ", "-");
 
-        document.getElementById("info-bioma").textContent =
-          p.BMA_NM || "Não informado";
-        document.getElementById("info-populacao").textContent = p.POP
-          ? p.POP.toLocaleString("pt-BR")
-          : "-";
-        document.getElementById(
-          "info-sem-atendimento"
-        ).textContent = p.INDICE_SEM_ATENDIMENTO
-            ? (p.INDICE_SEM_ATENDIMENTO * 100).toFixed(1) + "%"
+        document.getElementById("info-bioma").textContent = p.BMA_NM || "Não informado";
+        document.getElementById("info-populacao").textContent = p.POP ? p.POP.toLocaleString("pt-BR") : "-";
+        document.getElementById("info-sem-atendimento"
+        ).textContent = p.INDICE_SEM_ATENDIMENTO ? (p.INDICE_SEM_ATENDIMENTO * 100).toFixed(1) + "%"
             : "-";
-        document.getElementById("info-diluicao").textContent =
-          p.CAP_DILUICAO_DESC || "-";
+        document.getElementById("info-diluicao").textContent = p.CAP_DILUICAO_DESC || "-";
 
         atualizarGraficoMunicipio(p);
       }
@@ -880,35 +523,48 @@
         if (charts.municipio) charts.municipio.destroy();
 
         charts.municipio = new Chart(ctx, {
+
           type: "bar",
           data: {
+
             labels: [ "Sem atendimento", "Diluição", "Risco total" ],
-            datasets: [
-              {
-                data: [
-                  props.INDICE_SEM_ATENDIMENTO || 0,
-                  converterDiluicaoParaValor(props.CAP_DILUICAO_DESC),
-                  props.RISCO_TOTAL ? props.RISCO_TOTAL / 10 : 0
-                ],
-                backgroundColor: [
-                  "rgba(231, 76, 60, 0.7)",
-                  "rgba(52, 152, 219, 0.7)",
-                  "rgba(46, 204, 113, 0.7)"
-                ]
-              }
+            datasets: [ {
+              data: [ props.INDICE_SEM_ATENDIMENTO || 0,
+              converterDiluicaoParaValor(props.CAP_DILUICAO_DESC),
+              props.RISCO_TOTAL ? props.RISCO_TOTAL / 10 : 0 ],
+              backgroundColor: [ "rgba(231, 76, 60, 0.7)",
+                "rgba(52, 152, 219, 0.7)",
+                "rgba(46, 204, 113, 0.7)"
+              ]
+            }
+
             ]
-          },
+          }
+
+          ,
           options: {
+
             responsive: true,
             maintainAspectRatio: false,
-            scales: { y: { beginAtZero: true, max: 1 } },
-            plugins: { legend: { display: false } }
+            scales: {
+              y: {
+                beginAtZero: true, max: 1
+              }
+            }
+
+            ,
+            plugins: {
+              legend: {
+                display: false
+              }
+            }
           }
         });
       }
 
       function converterDiluicaoParaValor(diluicao) {
         if (!diluicao) return 0;
+
         const valores = {
           Ótima: 0.2,
           Boa: 0.4,
@@ -916,7 +572,9 @@
           Ruim: 0.8,
           Péssima: 1.0,
           Nula: 1.0
-        };
+        }
+
+          ;
         return valores[ diluicao ] || 0;
       }
 
@@ -925,7 +583,10 @@
         if (!layerGeojson) return;
 
         const features = layerGeojson.toGeoJSON().features;
-        const contagemRisco = {};
+
+        const contagemRisco = {}
+
+          ;
 
         features.forEach((f) => {
           const risco = f.properties.CLASSE_RISCO;
@@ -937,7 +598,11 @@
 
       function atualizarGraficoRisco(contagem, total) {
         const ctx = document.getElementById("graficoRisco").getContext("2d");
-        const ordem = [ "Muito Baixo", "Baixo", "Médio", "Alto", "Muito Alto" ];
+        const ordem = [ "Muito Baixo",
+          "Baixo",
+          "Médio",
+          "Alto",
+          "Muito Alto" ];
         const labels = ordem.filter((r) => contagem[ r ]);
         const data = labels.map((r) => contagem[ r ]);
         const cores = labels.map((r) => getRiskColor(r));
@@ -945,20 +610,39 @@
         if (charts.risco) charts.risco.destroy();
 
         charts.risco = new Chart(ctx, {
+
           type: "pie",
           data: {
+
             labels: labels,
-            datasets: [ { data, backgroundColor: cores } ]
-          },
+            datasets: [ {
+              data, backgroundColor: cores
+            }
+
+            ]
+          }
+
+          ,
           options: {
+
             responsive: true,
             plugins: {
               tooltip: {
                 callbacks: {
                   label: function (ctx) {
-                    return `${ctx.label}: ${ctx.raw} (${Math.round(
-                      (ctx.raw / total) * 100
-                    )}%)`;
+                    return `$ {
+                      ctx.label
+                    }
+
+                    : $ {
+                      ctx.raw
+                    }
+
+                    ($ {
+                        Math.round((ctx.raw / total) * 100)
+                      }
+
+                      %)`;
                   }
                 }
               }
@@ -969,31 +653,27 @@
 
       // Filtragem do mapa
       function atualizarMapaFiltrado() {
-        const termoBusca = document
-          .getElementById("buscaMunicipio")
-          .value.toLowerCase();
-        const biomasSelecionados = Array.from(
-          document.getElementById("filtro-bioma").selectedOptions
-        ).map((o) => o.value);
-        const ufsSelecionadas = Array.from(
-          document.getElementById("filtro-uf").selectedOptions
-        ).map((o) => o.value);
+        const termoBusca = document.getElementById("buscaMunicipio").value.toLowerCase();
+        const biomasSelecionados = Array.from(document.getElementById("filtro-bioma").selectedOptions).map((o) => o.value);
+        const ufsSelecionadas = Array.from(document.getElementById("filtro-uf").selectedOptions).map((o) => o.value);
 
         if (layerGeojson) map.removeLayer(layerGeojson);
 
         const filtrados = geojsonData.features.filter((f) => {
           const p = f.properties;
           const matchNome = p.MUN_NM_MUN.toLowerCase().includes(termoBusca);
-          const matchBioma =
-            biomasSelecionados.length === 0 || biomasSelecionados.includes(p.BMA_NM);
-          const matchUF =
-            ufsSelecionadas.length === 0 || ufsSelecionadas.includes(p.MUN_UF);
+          const matchBioma = biomasSelecionados.length === 0 || biomasSelecionados.includes(p.BMA_NM);
+          const matchUF = ufsSelecionadas.length === 0 || ufsSelecionadas.includes(p.MUN_UF);
           return matchNome && matchBioma && matchUF;
         });
 
-        layerGeojson = L.geoJSON(
-          { type: "FeatureCollection", features: filtrados },
+        layerGeojson = L.geoJSON({
+          type: "FeatureCollection", features: filtrados
+        }
+
+          ,
           {
+
             style: getDefaultStyle,
             onEachFeature: (feature, layer) => {
               layer.bindPopup(createCustomPopup(feature), {
@@ -1007,16 +687,21 @@
                   layer.setStyle(getHighlightStyle());
                   createHighlightBorder(layer);
                   layer.bringToFront();
-                },
+                }
+
+                ,
                 mouseout: function (e) {
                   if (selectedLayer !== e.target) {
                     removeHighlight(e.target);
                   }
-                },
+                }
+
+                ,
                 click: function (e) {
                   if (selectedLayer) {
                     removeHighlight(selectedLayer);
                   }
+
                   selectedLayer = e.target;
                   selectedLayer.setStyle(getHighlightStyle());
                   createHighlightBorder(selectedLayer);
@@ -1025,8 +710,7 @@
                 }
               });
             }
-          }
-        ).addTo(map);
+          }).addTo(map);
 
         atualizarEstatisticasFiltro();
       }
@@ -1042,12 +726,8 @@
 
         // Nome personalizado baseado nos filtros
         let nome = "Risco_Contaminacao";
-        const biomas = Array.from(
-          document.getElementById("filtro-bioma").selectedOptions
-        ).map((o) => o.value);
-        const ufs = Array.from(
-          document.getElementById("filtro-uf").selectedOptions
-        ).map((o) => o.value);
+        const biomas = Array.from(document.getElementById("filtro-bioma").selectedOptions).map((o) => o.value);
+        const ufs = Array.from(document.getElementById("filtro-uf").selectedOptions).map((o) => o.value);
 
         if (biomas.length > 0) nome += "_Bioma_" + biomas.join("_");
         if (ufs.length > 0) nome += "_UF_" + ufs.join("_");
@@ -1055,19 +735,32 @@
         XLSX.writeFile(wb, nome + ".xlsx");
       }
 
+      // Minimizar/maximizar painel de filtros
+      document.addEventListener("DOMContentLoaded", function () {
+        const painel = document.getElementById("painel-filtros");
+        const btn = document.getElementById("btn-minimizar-filtros");
+        let minimizado = false;
+
+        btn.addEventListener("click", function () {
+          minimizado = !minimizado;
+          painel.classList.toggle("minimizado", minimizado);
+          btn.innerHTML = minimizado ? '<i class="fas fa-angle-right"></i>'
+            : '<i class="fas fa-angle-left"></i>';
+        });
+      });
+
       // Inicialização
       document.addEventListener("DOMContentLoaded", async (event) => {
         // Mostrar popup inicial
         document.getElementById("welcome-popup").style.display = "flex";
+
         document.getElementById("btnRelatorio").addEventListener("click", function () {
           document.getElementById("relatorio-container").style.display = "block";
         });
 
-        document
-          .getElementById("fecharRelatorio")
-          .addEventListener("click", function () {
-            document.getElementById("relatorio-container").style.display = "none";
-          });
+        document.getElementById("fecharRelatorio").addEventListener("click", function () {
+          document.getElementById("relatorio-container").style.display = "none";
+        });
 
         document.querySelector(".close-modal").addEventListener("click", function () {
           document.getElementById("welcome-popup").style.display = "none";
@@ -1086,14 +779,8 @@
           geojsonData = await response.json();
 
           // Preencher filtros
-          const biomas = [
-            ...new Set(geojsonData.features.map((f) => f.properties.BMA_NM))
-          ]
-            .filter((b) => b)
-            .sort();
-          const ufs = [
-            ...new Set(geojsonData.features.map((f) => f.properties.MUN_UF))
-          ].sort();
+          const biomas = [ ...new Set(geojsonData.features.map((f) => f.properties.BMA_NM)) ].filter((b) => b).sort();
+          const ufs = [ ...new Set(geojsonData.features.map((f) => f.properties.MUN_UF)) ].sort();
 
           const biomaSelect = document.getElementById("filtro-bioma");
           const ufSelect = document.getElementById("filtro-uf");
@@ -1113,15 +800,9 @@
           });
 
           // Configurar eventos
-          document
-            .getElementById("buscaMunicipio")
-            .addEventListener("input", atualizarMapaFiltrado);
-          document
-            .getElementById("filtro-bioma")
-            .addEventListener("change", atualizarMapaFiltrado);
-          document
-            .getElementById("filtro-uf")
-            .addEventListener("change", atualizarMapaFiltrado);
+          document.getElementById("buscaMunicipio").addEventListener("input", atualizarMapaFiltrado);
+          document.getElementById("filtro-bioma").addEventListener("change", atualizarMapaFiltrado);
+          document.getElementById("filtro-uf").addEventListener("change", atualizarMapaFiltrado);
 
           document.getElementById("btnLimpar").addEventListener("click", function () {
             document.getElementById("buscaMunicipio").value = "";
@@ -1132,46 +813,17 @@
 
           document.getElementById("btnLimpar").click();
 
-          document
-            .getElementById("btnExportar")
-            .addEventListener("click", exportarParaExcel);
+          document.getElementById("btnExportar").addEventListener("click", exportarParaExcel);
 
           // Carregar mapa inicial
           atualizarMapaFiltrado();
-        } catch (error) {
+        }
+
+        catch (error) {
           console.error("Erro ao carregar dados:", error);
           // alert("Erro ao carregar dados do mapa. Por favor, tente recarregar a página.");
         }
       });
-
-      /* charts.risco = new Chart(ctx, {
-        type: "pie",
-        data: {
-          labels: ["Muito Baixo", "Baixo", "Médio", "Alto", "Muito Alto"],
-          datasets: [
-            {
-              data: [
-                contagem["Muito Baixo"] || 0,
-                contagem["Baixo"] || 0,
-                contagem["Médio"] || 0,
-                contagem["Alto"] || 0,
-                contagem["Muito Alto"] || 0
-              ],
-              backgroundColor: ["#31A354", "#A1D99B", "#FED976", "#FD8D3C", "#E31A1C"]
-            }
-          ]
-        },
-        options: {
-          responsive: true,
-          maintainAspectRatio: false,
-          plugins: {
-            legend: {
-              display: true
-            }
-          }
-        }
-      }); */
-
     </script>
   </body>
 
