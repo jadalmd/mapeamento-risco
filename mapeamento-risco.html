@@ -468,7 +468,7 @@
       </div>
     </div>
 
-    <!-- Filtros (Topo Direito) -->
+    <!-- Filtros (Topo Esquerdo) -->
     <div id="painel-filtros">
       <button id="btn-minimizar-filtros" class="btn-secondary" title="Minimizar painel"
         style="align-self: flex-end; width: 32px; height: 32px; display: flex; justify-content: center; align-items: center; padding: 0; margin-bottom: 8px;">
@@ -490,7 +490,7 @@
         <i class="fas fa-broom"></i> Limpar Filtros
       </button>
       <button id="btnExportar" class="btn-primary">
-        <i class="fas fa-file-excel"></i> Exportar
+        <i class="fas fa-file-excel"></i> Exportar Dados (xlsx)
         <span class="tooltip">Exportar municípios visíveis com todos os indicadores</span>
       </button>
 
@@ -508,12 +508,12 @@
         </div>
       </div>
     </div>
-    </div>
+
 
     <!-- Mapa (Centro) -->
     <div id="map"></div>
 
-    <!-- Sidebar (Esquerda) -->
+    <!-- Sidebar (Direita) -->
     <div id="sidebar">
       <div id="sidebar-content">
         <!-- Seção de Informações do Município -->
@@ -566,10 +566,18 @@
               <span>Muito Alto</span>
             </div>
           </div>
+          <!-- Logo PPGECAM na parte inferior da sidebar direita -->
+          <div
+            style="width:100%; display:flex; justify-content:center; align-items:center; margin-top:24px; margin-bottom:12px;">
+            <img src="img/logo-ppgecam.png" alt="Logo PPGECAM" style="max-width:180px; height:auto; opacity:0.95;" />
+          </div>
         </div>
       </div>
     </div>
+    </div>
+    </div>
 
+    <!-- Relatório -->
     <div id="relatorio-container"
       style="display: none; position: absolute; align-items: center; left: 50%; transform: translateX(-50%); width: 90%; max-width: 1000px; background: white; z-index: 1100; padding: 20px; border-radius: 8px; box-shadow: 0 4px 12px rgba(0,0,0,0.2); overflow-y: auto; max-height: 80vh;">
       <button id="fecharRelatorio" class="btn-primary" style="float: right; margin-bottom: 10px;">Fechar</button>
@@ -1127,5 +1135,9 @@
       });
     </script>
   </body>
+  <footer id="rodape"
+    style="position:fixed; left:0; bottom:0; width:100%; background:#3498db; color:#fff; text-align:center; font-size:14px; padding:6px 0; z-index:1200; letter-spacing:0.5px;">
+    Desenvolvido por Jaidna Almeida &copy; 2025
+  </footer>
 
 </html>
