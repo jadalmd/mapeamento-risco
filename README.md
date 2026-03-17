@@ -1,4 +1,4 @@
-# Mapeamento do Risco de Contaminação Hídrica por Esgotamento Sanitário
+# Mapeamento do Risco de Contaminação Hídrica por Efluentes
 
 Plataforma web interativa (Leaflet) para visualização e análise exploratória do **risco de contaminação hídrica** associado ao esgotamento sanitário em municípios brasileiros, a partir de dados do **Atlas Esgotos (ANA, 2017)** e informações ambientais (biomas).
 
